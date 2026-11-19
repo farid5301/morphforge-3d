@@ -1,0 +1,7 @@
+fastapi>=0.115.0
+uvicorn>=0.32.0
+pillow>=10.4.0
+trimesh>=4.5.0
+# Install PyTorch CUDA for your RTX 5060 first:
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+# Then install TripoSR (https://github.com/VAST-AI-Research/TripoSR) for local 8GB VRAM 360° generation

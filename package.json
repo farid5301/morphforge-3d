@@ -1,0 +1,71 @@
+{
+  "name": "morphforge-3d",
+  "version": "1.0.0",
+  "description": "MorphForge 3D — Interactive 2D-to-3D Print-Ready Portable Studio",
+  "author": "MorphForge Studio",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build:renderer": "vite build",
+    "build:electron": "esbuild electron/main.ts --bundle --platform=node --external:electron --outfile=dist-electron/main.js && esbuild electron/preload.ts --bundle --platform=node --external:electron --outfile=dist-electron/preload.js",
+    "build": "npm run build:renderer && npm run build:electron",
+    "electron:dev": "npm run build:electron && electron .",
+    "pack:portable": "npm run build && electron-builder --win portable dir"
+  },
+  "dependencies": {
+    "framer-motion": "^12.6.2",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.175.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@types/three": "^0.175.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "electron": "^35.2.0",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.2",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.2"
+  },
+  "build": {
+    "appId": "com.morphforge.studio3d",
+    "productName": "MorphForge 3D",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "local-ai-bridge",
+        "to": "local-ai-bridge"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        },
+        {
+          "target": "dir",
+          "arch": ["x64"]
+        }
+      ],
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "MorphForge3D-Portable.exe"
+    }
+  }
+}

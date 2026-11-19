@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+dist-electron/
+release/
+
+# Local Python AI bridge virtualenv
+local-ai-bridge/.venv/
+local-ai-bridge/venv/
+**/__pycache__/
+*.pyc
+
+# Logs & OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.env
+.env.local
